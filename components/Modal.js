@@ -1,6 +1,7 @@
 import { Button, Modal, StyleSheet, Text, TextInput, View } from "react-native";
 
 import React from "react";
+import colors from '../constants/colors';
 
 const ModalComponent = ({modalVisible, handleConfirm, handleCancel, text}) => {
 
@@ -18,10 +19,12 @@ const ModalComponent = ({modalVisible, handleConfirm, handleCancel, text}) => {
                         <Button
                             onPress={handleConfirm}
                             title="CONFIRMAR"
+                            color={colors.secundary}
                         />
                         <Button
                             onPress={handleCancel}
                             title="CANCELAR"
+                            color={colors.secundary}
                         />
                     </View>
                 </View>

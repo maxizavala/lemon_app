@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import { Icon } from 'react-native-elements'
+import colors from '../constants/colors';
+import fonts from '../constants/fonts';
 
 const Header = ({buy, sell}) => {
 
@@ -12,8 +14,8 @@ const Header = ({buy, sell}) => {
                 <Text style={styles.textSaldo}>$5.000,00</Text>
             </View>
             <View style={styles.iconContainer}>
-                <Icon name='add-circle' color='white' style={styles.iconR} onPress={buy}/>
-                <Icon name='remove-circle' color='white' style={styles.iconL} onPress={sell}/>
+                <Icon name='add-circle' color={colors.primary} style={styles.iconR} onPress={buy}/>
+                <Icon name='remove-circle' color={colors.primary} style={styles.iconL} onPress={sell}/>
             </View>
             <View style={styles.iconContainer}>
                 <Text style={styles.textButtonR}> Comprar </Text>
@@ -25,7 +27,7 @@ const Header = ({buy, sell}) => {
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: 'cornflowerblue', 
+        backgroundColor: colors.secundary, 
         height: '17%', 
         width: '100%', 
     },
@@ -35,16 +37,16 @@ const styles = StyleSheet.create({
     },
     textTitle: {
         marginTop: 50,
-        fontFamily: 'Arial',
+        fontFamily: fonts.title,
         fontSize: 15,
-        color: 'white'
+        color: colors.primary,
     },
     textSaldo: {
         marginTop: 10,
-        fontFamily: 'Arial',
+        fontFamily: fonts.text,
         fontSize: 20,
         fontWeight: 'bold',
-        color: 'white'
+        color: colors.primary,
     },
     iconContainer: {
         flex: 1,
@@ -56,18 +58,18 @@ const styles = StyleSheet.create({
         marginLeft: 85
     },
     textButtonL: {
-        fontFamily: 'Arial',
+        fontFamily: fonts.text,
         fontSize: 15,
-        color: 'white',
+        color: colors.primary,
         marginLeft: 75
     },
     iconR: {
         marginRight: 85
     },
     textButtonR: {
-        fontFamily: 'Arial',
+        fontFamily: fonts.text,
         fontSize: 15,
-        color: 'white',
+        color: colors.primary,
         marginRight: 75
     }
 })

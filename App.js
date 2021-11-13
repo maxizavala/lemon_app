@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from 'react-native';
 
+import AppLoading from 'expo-app-loading'
 import Header from './components/Header'
 import Lista from './components/Lista'
 import Modal from './components/Modal'
+import { useFonts } from 'expo-font'
 
 const App = () => {
 
@@ -11,6 +13,13 @@ const App = () => {
     const [text, setText] = useState('');
     const [itemList, setItemList] = useState([]);
     const [operacion, setOperacion] = useState('');
+
+    const [loaded] = useFonts({
+        Bebas: require('./assets/fonts/Bebas.ttf'),
+        Roboto: require('./assets/fonts/Roboto.ttf')
+    })
+	
+	if (!loaded) { return null }
 
     const obtenerFecha = () => {
         const f = new Date()

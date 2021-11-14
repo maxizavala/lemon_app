@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import { Icon } from 'react-native-elements'
+import React from "react";
 import colors from '../constants/colors';
 import fonts from '../constants/fonts';
 

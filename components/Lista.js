@@ -4,25 +4,6 @@ import React from "react"
 
 const Lista = (props) => {
 
-    const listaPrueba = [
-        {
-            id: 1,
-            value: "Compra de btc"
-        },
-        {
-            id: 2,
-            value: "Venta de btc"
-        },
-        {
-            id: 3,
-            value: "Venta de btc"
-        },
-        {
-            id: 4,
-            value: "Venta de btc"
-        },
-    ]
-
     return (
         <FlatList
             data={props.lista}

@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 
-import { Icon } from 'react-native-elements'
 import React from "react";
 import colors from '../constants/colors';
 import fonts from '../constants/fonts';
@@ -14,12 +13,8 @@ const Header = ({buy, sell}) => {
                 <Text style={styles.textSaldo}>$5.000,00</Text>
             </View>
             <View style={styles.iconContainer}>
-                <Icon name='add-circle' color={colors.primary} style={styles.iconR} onPress={buy}/>
-                <Icon name='remove-circle' color={colors.primary} style={styles.iconL} onPress={sell}/>
-            </View>
-            <View style={styles.iconContainer}>
-                <Text style={styles.textButtonR}> Comprar </Text>
-                <Text style={styles.textButtonL}> Vender </Text>
+                <Button title="COMPRAR" color={colors.primary} style={styles.iconR} onPress={buy}/>
+                <Button title="VENDER" color={colors.primary} style={styles.iconL} onPress={sell}/>
             </View>
         </View>
     );

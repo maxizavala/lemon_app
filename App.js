@@ -1,21 +1,24 @@
+import AppLoading from 'expo-app-loading'
+import LemonNavigator from "./Navigation/LemonNavigator"
+import React from "react"
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useFonts } from 'expo-font'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const App = () => {
+
+    const [loaded] = useFonts({
+        Bebas: require('./assets/fonts/Bebas.ttf'),
+        Roboto: require('./assets/fonts/Roboto.ttf')
+    })
+	
+	if (!loaded) { return <AppLoading/> }
+
+    return(
+        <>
+            <LemonNavigator/>
+            <StatusBar style="auto" />
+        </>
+    );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App

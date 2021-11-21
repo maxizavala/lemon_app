@@ -4,16 +4,16 @@ import React from "react"
 import colors from "../constants/colors"
 import fonts from "../constants/fonts"
 
-const Home = ({ navigation }) => {
+const Operations = ({ navigation, route }) => {
 
     return(
         <View style={{flex: 1}}> 
-            <View style={styles.header}>
-                <Text style={styles.title}>HOME</Text>
-            </View> 
 
             <ScrollView>
-
+                <Text> FECHA: {route.params.fecha} </Text>
+                <Text> HORA: {route.params.hora} </Text>
+                <Text> OPERACION: {route.params.operacion} </Text>
+                <Text> MONTO: {route.params.monto} </Text>
             </ScrollView>
             
             <View style={styles.footer}>
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Home
+export default Operations

@@ -1,11 +1,12 @@
+import { Button, StyleSheet, View } from 'react-native';
 import React, { useState } from "react";
-import { StyleSheet, View } from 'react-native';
 
 import Header from '../components/Header'
 import Lista from '../components/Lista'
 import Modal from '../components/Modal'
+import colors from '../constants/colors';
 
-const Exchange = () => {
+const Exchange = ({ navigation }) => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [text, setText] = useState('');
@@ -68,7 +69,15 @@ const Exchange = () => {
                 buy={buy}
                 sell={sell}
             />
-            <Lista lista={itemList}/>  
+
+            <Lista lista={itemList}/> 
+            
+            <View style={styles.footer}>
+                <Button title="HOME" color={colors.primary} onPress={ () => navigation.push('Home') } />
+                <Button title="ORDERS" color={colors.primary} onPress={ () => navigation.push('Exchange') } />
+                <Button title="HISTORIAL" color={colors.primary} onPress={ () => navigation.push('Historial') } />
+            </View>
+
             <Modal
                 modalVisible={modalVisible}
                 handleConfirm={handleConfirm}
@@ -83,6 +92,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
+    footer: {
+        backgroundColor: colors.secundary, 
+        height: '6%', 
+        width: '100%',
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row",
+    }
 })
 
 export default Exchange

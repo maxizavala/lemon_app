@@ -74,7 +74,7 @@ const Exchange = ({ navigation }) => {
             
             <View style={styles.footer}>
                 <Button title="HOME" color={colors.primary} onPress={ () => navigation.push('Home') } />
-                <Button title="EXCHANGE" color={colors.primary} onPress={ () => navigation.push('Exchange') } />
+                <Button title="ORDERS" color={colors.primary} onPress={ () => navigation.push('Exchange') } />
                 <Button title="HISTORIAL" color={colors.primary} onPress={ () => navigation.push('Historial') } />
             </View>
 

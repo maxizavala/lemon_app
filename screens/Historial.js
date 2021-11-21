@@ -1,10 +1,20 @@
-import { Button, ScrollView, StyleSheet, Text, View } from "react-native"
+import { Button, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
+import { HISTORIAL } from "../data/historial"
 import React from "react"
 import colors from "../constants/colors"
 import fonts from "../constants/fonts"
 
-const Home = ({ navigation }) => {
+const Historial = ({ navigation }) => {
+
+    const handleSelectOperation = (item) => {
+        navigation.navigate('Operations', {
+            fecha: item.fecha,
+            hora: item.hora,
+            operacion: item.operacion,
+            monto: item.debito_monto,
+        })
+    }
 
     return (
         <View style={{flex: 1}}> 
@@ -12,13 +22,20 @@ const Home = ({ navigation }) => {
                 <Text style={styles.title}>Historial</Text>
             </View> 
             
-            <ScrollView>
-
-            </ScrollView>
+            <FlatList 
+                data={HISTORIAL}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                    <TouchableOpacity onPress={() => handleSelectOperation(item)}>
+                        <Text>{item.fecha} - {item.operacion} - {item.debito_monto}</Text>
+                    </TouchableOpacity>
+                )}
+            /> 
+            
             
             <View style={styles.footer}>
                 <Button title="HOME" color={colors.primary} onPress={ () => navigation.push('Home') } />
-                <Button title="EXCHANGE" color={colors.primary} onPress={ () => navigation.push('Exchange') } />
+                <Button title="ORDERS" color={colors.primary} onPress={ () => navigation.push('Exchange') } />
                 <Button title="HISTORIAL" color={colors.primary} onPress={ () => navigation.push('Historial') } />
             </View>
         </View>
@@ -50,4 +67,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Home
+export default Historial

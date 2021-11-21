@@ -1,21 +1,26 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native"
+import { Button, ScrollView, StyleSheet, Text, View } from "react-native"
 
-import Footer from "../components/Footer"
 import React from "react"
 import colors from "../constants/colors"
 import fonts from "../constants/fonts"
 
-const Home = () => {
+const Home = ({ navigation }) => {
 
     return (
         <View style={{flex: 1}}> 
             <View style={styles.header}>
                 <Text style={styles.title}>Historial</Text>
             </View> 
+            
             <ScrollView>
 
             </ScrollView>
-            <Footer/>
+            
+            <View style={styles.footer}>
+                <Button title="HOME" color={colors.primary} onPress={ () => navigation.push('Home') } />
+                <Button title="EXCHANGE" color={colors.primary} onPress={ () => navigation.push('Exchange') } />
+                <Button title="HISTORIAL" color={colors.primary} onPress={ () => navigation.push('Historial') } />
+            </View>
         </View>
     )
 
@@ -34,6 +39,14 @@ const styles = StyleSheet.create({
         color: colors.primary,
         fontSize: 20,
         marginTop: 30,
+    },
+    footer: {
+        backgroundColor: colors.secundary, 
+        height: '6%', 
+        width: '100%',
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row",
     }
 })
 

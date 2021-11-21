@@ -73,8 +73,9 @@ const Exchange = ({ navigation }) => {
             <Lista lista={itemList}/> 
             
             <View style={styles.footer}>
-                <Button title="HOME" color={colors.primary} onPress={ () => navigation.navigate('Home') } />
-                <Button title="EXCHANGE" color={colors.primary} onPress={ () => navigation.navigate('Exchange') } />
+                <Button title="HOME" color={colors.primary} onPress={ () => navigation.push('Home') } />
+                <Button title="EXCHANGE" color={colors.primary} onPress={ () => navigation.push('Exchange') } />
+                <Button title="HISTORIAL" color={colors.primary} onPress={ () => navigation.push('Historial') } />
             </View>
 
             <Modal

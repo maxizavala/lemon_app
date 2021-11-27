@@ -11,16 +11,6 @@ const Home = ({ navigation }) => {
             <View style={styles.header}>
                 <Text style={styles.title}>HOME</Text>
             </View> 
-
-            <ScrollView>
-
-            </ScrollView>
-            
-            <View style={styles.footer}>
-                <Button title="HOME" color={colors.primary} onPress={ () => navigation.push('Home') } />
-                <Button title="ORDERS" color={colors.primary} onPress={ () => navigation.push('Exchange') } />
-                <Button title="HISTORIAL" color={colors.primary} onPress={ () => navigation.push('Historial') } />
-            </View>
         </View>
     )
 
@@ -40,14 +30,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginTop: 30,
     },
-    footer: {
-        backgroundColor: colors.secundary, 
-        height: '6%', 
-        width: '100%',
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "row",
-    }
 })
 
 export default Home

@@ -71,12 +71,6 @@ const Exchange = ({ navigation }) => {
             />
 
             <Lista lista={itemList}/> 
-            
-            <View style={styles.footer}>
-                <Button title="HOME" color={colors.primary} onPress={ () => navigation.push('Home') } />
-                <Button title="ORDERS" color={colors.primary} onPress={ () => navigation.push('Exchange') } />
-                <Button title="HISTORIAL" color={colors.primary} onPress={ () => navigation.push('Historial') } />
-            </View>
 
             <Modal
                 modalVisible={modalVisible}
@@ -92,14 +86,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
-    footer: {
-        backgroundColor: colors.secundary, 
-        height: '6%', 
-        width: '100%',
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "row",
-    }
 })
 
 export default Exchange

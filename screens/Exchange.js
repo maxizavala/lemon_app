@@ -1,10 +1,9 @@
-import { Button, StyleSheet, View } from 'react-native';
 import React, { useState } from "react";
+import { StyleSheet, View } from 'react-native';
 
 import Header from '../components/Header'
 import Lista from '../components/Lista'
 import Modal from '../components/Modal'
-import colors from '../constants/colors';
 
 const Exchange = ({ navigation }) => {
 
@@ -72,6 +71,10 @@ const Exchange = ({ navigation }) => {
 
             <Lista lista={itemList}/> 
 
+            <View style={styles.footer}>
+
+            </View>
+
             <Modal
                 modalVisible={modalVisible}
                 handleConfirm={handleConfirm}
@@ -85,6 +88,10 @@ const Exchange = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1
+    },
+    footer: {
+        height: '16%', 
+        width: '100%', 
     },
 })
 

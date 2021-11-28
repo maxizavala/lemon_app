@@ -16,7 +16,7 @@ const App = () => {
     return(
         <>
             <MainNavigator/>
-            <StatusBar style="auto" />
+            <StatusBar style="light" />
         </>
     );
 }

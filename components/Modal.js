@@ -26,7 +26,9 @@ const ModalComponent = ({modalVisible, handleConfirm, handleCancel, text}) => {
     }
 
     const confirm = () => {
-        handleConfirm()
+        if (btc > 0) {
+            handleConfirm()
+        }
         setEnteredValue('')
         setBtc(0)
     }
@@ -85,6 +87,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+        overflow: 'hidden',
       },
       modalMessage: {
         fontSize: 18,

@@ -1,11 +1,13 @@
-import { Button, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
-import { HISTORIAL } from "../data/historial"
 import React from "react"
 import colors from "../constants/colors"
 import fonts from "../constants/fonts"
+import { useSelector } from 'react-redux';
 
 const Historial = ({ navigation }) => {
+
+    const historial = useSelector(state => state.historial);
 
     const handleSelectOperation = (item) => {
         navigation.navigate('Operations', {
@@ -23,7 +25,7 @@ const Historial = ({ navigation }) => {
             </View> 
             
             <FlatList 
-                data={HISTORIAL}
+                data={historial}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => handleSelectOperation(item)}>

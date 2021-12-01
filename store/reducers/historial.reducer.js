@@ -1,4 +1,4 @@
-export const HISTORIAL = [
+const initialState  = [
     {
         id: '1',
         fecha: '18/11/2021',
@@ -30,3 +30,9 @@ export const HISTORIAL = [
         credito_monto: '5000'
     }
 ];
+
+const historialReducer = (state = initialState, action) => {
+	return state;
+}
+
+export default historialReducer;

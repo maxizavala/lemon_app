@@ -3,14 +3,17 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import colors from '../constants/colors';
 import fonts from '../constants/fonts';
+import { useSelector } from 'react-redux';
 
 const Header = ({buy, sell}) => {
+
+    const arsSaldo = useSelector(state => state.arsSaldo.saldo);
 
     return (
         <View style={styles.header}>
             <View style={styles.text}>
                 <Text style={styles.textTitle}>Saldo disponible</Text>
-                <Text style={styles.textSaldo}>$5.000,00</Text>
+                <Text style={styles.textSaldo}>${arsSaldo}</Text>
             </View>
             <View style={styles.iconContainer}>
                 <Button title="COMPRAR" color={colors.primary} style={styles.iconR} onPress={buy}/>

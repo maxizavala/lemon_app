@@ -3,15 +3,19 @@ import React, { useState } from "react";
 
 import colors from "../constants/colors";
 import fonts from '../constants/fonts';
+import { useSelector } from 'react-redux';
 
 const ModalComponent = ({modalVisible, handleConfirm, handleCancel, text}) => {
+
+    const btcPrice = useSelector(state => state.btcPrice.price);
+    const arsSaldo = useSelector(state => state.arsSaldo.saldo);
 
     const [btc, setBtc] = useState(0)
     const [enteredValue, setEnteredValue] = useState('')
 
     const handleInputValue = text => {
         setEnteredValue(text.replace(/[^0-9]/g, ''))
-        if (text <= 5000) {
+        if (text <= arsSaldo) {
             let btc = calcularBtc(text)
             setBtc(btc)
         } else {
@@ -21,7 +25,7 @@ const ModalComponent = ({modalVisible, handleConfirm, handleCancel, text}) => {
     }
 
     const calcularBtc = (monto) => {
-        const btc = 61856.40
+        const btc = btcPrice
         return (monto/btc).toFixed(8)
     }
 
@@ -45,7 +49,7 @@ const ModalComponent = ({modalVisible, handleConfirm, handleCancel, text}) => {
             <View style={styles.modalContainer}>
                 <View style={[styles.modalContent, styles.shadow]}>
                     <Text style={styles.title}> {text} </Text>
-                    <Text style={styles.modalCotizacion}> 1 btc = $61.856,40 </Text>
+                    <Text style={styles.modalCotizacion}> 1 btc = ${btcPrice} </Text>
                     <View style={styles.buttonContainer}>
                         <Text style={styles.title} > $ </Text>
                         <TextInput 

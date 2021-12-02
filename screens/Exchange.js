@@ -4,6 +4,9 @@ import { StyleSheet, View } from 'react-native';
 import Header from '../components/Header'
 import Lista from '../components/Lista'
 import Modal from '../components/Modal'
+import { addOrder } from "../store/actions/orders.actions";
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux';
 
 const Exchange = ({ navigation }) => {
 
@@ -12,6 +15,8 @@ const Exchange = ({ navigation }) => {
     const [itemList, setItemList] = useState([]);
     const [operacion, setOperacion] = useState('');
 
+    const dispatch = useDispatch();
+    const orders = useSelector(state => state.ordenes.list);
 
     const obtenerFecha = () => {
         const f = new Date()
@@ -44,13 +49,11 @@ const Exchange = ({ navigation }) => {
     }
 
     const addItem = (op) => {
-        setItemList([
-            ...itemList,
-            {
-                id: Math.random().toString(),
-                value: obtenerFecha() + " - " + op
-            },
-        ])
+        dispatch(addOrder({
+            id: Math.random().toString(),
+            value: obtenerFecha() + " - " + op
+        })) 
+
     }
 
     const handleConfirm = () => {
@@ -69,7 +72,7 @@ const Exchange = ({ navigation }) => {
                 sell={sell}
             />
 
-            <Lista lista={itemList}/> 
+            <Lista lista={orders}/> 
 
             <View style={styles.footer}>
 

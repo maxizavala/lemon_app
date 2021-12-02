@@ -12,7 +12,6 @@ const Exchange = ({ navigation }) => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [text, setText] = useState('');
-    const [itemList, setItemList] = useState([]);
     const [operacion, setOperacion] = useState('');
 
     const dispatch = useDispatch();

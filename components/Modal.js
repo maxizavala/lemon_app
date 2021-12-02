@@ -1,9 +1,11 @@
-import { Button, Modal, StyleSheet, Text, TextInput, View } from "react-native";
-import React, { useState } from "react";
+import { Button, Modal, StyleSheet, Text, TextInput, View } from "react-native"
+import React, { useState } from "react"
 
-import colors from "../constants/colors";
-import fonts from '../constants/fonts';
-import { useSelector } from 'react-redux';
+import colors from "../constants/colors"
+import fonts from '../constants/fonts'
+import { updateArs } from "../store/actions/ars.actions"
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 const ModalComponent = ({modalVisible, handleConfirm, handleCancel, text}) => {
 
@@ -12,6 +14,8 @@ const ModalComponent = ({modalVisible, handleConfirm, handleCancel, text}) => {
 
     const [btc, setBtc] = useState(0)
     const [enteredValue, setEnteredValue] = useState('')
+
+    const dispatch = useDispatch();
 
     const handleInputValue = text => {
         setEnteredValue(text.replace(/[^0-9]/g, ''))
@@ -32,6 +36,9 @@ const ModalComponent = ({modalVisible, handleConfirm, handleCancel, text}) => {
     const confirm = () => {
         if (btc > 0) {
             handleConfirm()
+            if (text === 'Comprar btc') {
+                dispatch(updateArs(enteredValue))
+            }
         }
         setEnteredValue('')
         setBtc(0)

@@ -2,6 +2,7 @@
 - node
 - npm
 - expo
+- Firebase: Authentication
 
 # Dependencias:
 npm install expo-font

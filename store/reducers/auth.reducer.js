@@ -8,13 +8,13 @@ const INITIAL_STATE = {
 const authReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SIGN_UP:
-        return {
-            ...state,
-            token: action.token,
-            userId: action.userId,
-        };
+            return {
+                ...state,
+                token: action.token,
+                userId: action.userId,
+            };
         default:
-        return state;
+            return state;
     }
 }
 

@@ -16,8 +16,6 @@ export const signUp = (email, password) => {
             }),
         });
 
-        console.log(response)
-
         const data = await response.json();
 
         dispatch({

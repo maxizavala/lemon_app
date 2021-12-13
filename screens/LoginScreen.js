@@ -8,6 +8,9 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 
+import colors from '../constants/colors'
+import fonts from '../constants/fonts';
+import { signIn } from '../store/actions/auth.actions';
 import { signUp } from '../store/actions/auth.actions';
 import { useDispatch } from 'react-redux';
 
@@ -21,10 +24,14 @@ const LoginScreen = () => {
         dispatch(signUp(email, password));
     }
 
+    const handleSignIn = () => {
+        dispatch(signIn(email, password));
+    }
+
     return (
         <KeyboardAvoidingView style={styles.screen}>
+            <Text style={styles.brand}>Lemon App</Text>
             <View style={styles.container}>
-                <Text style={styles.title}>Registro</Text>
                 <Text style={styles.label}>Email</Text>
                 <TextInput
                     style={styles.input}
@@ -41,9 +48,14 @@ const LoginScreen = () => {
                     value={password}
                     onChangeText={setPassword}
                 />
-                <TouchableOpacity onPress={handleSignUp}>
-                    <Text>Registrarse</Text>
-                </TouchableOpacity>
+                <View style={styles.footer}>
+                    <TouchableOpacity style={styles.buttonIngresar} onPress={handleSignIn}>
+                        <Text style={styles.buttonIngresar}>INGRESAR</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.buttonRegistro} onPress={handleSignUp}>
+                        <Text style={styles.buttonRegistro}>REGISTRARSE</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </KeyboardAvoidingView>
     );
@@ -54,6 +66,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: colors.secundary,
     },
     title: {
         fontSize: 24,
@@ -79,6 +92,32 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ccc',
         borderBottomWidth: 1,
     },
+    footer: {
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row",
+    },
+    buttonIngresar: {
+        backgroundColor: colors.secundary,
+        fontFamily: fonts.text,
+        color: colors.primary,
+        fontSize: 16,
+        margin: 10,
+        borderRadius: 5,
+    },
+    buttonRegistro: {
+        backgroundColor: colors.primary,
+        fontFamily: fonts.text,
+        color: colors.secundary,
+        fontSize: 16,
+        margin: 10,
+        borderRadius: 5,
+    },
+    brand: {
+        fontSize: 42,
+        color: colors.primary,
+        fontFamily: fonts.title,
+    }
 });
 
 export default LoginScreen;

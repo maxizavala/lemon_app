@@ -1,16 +1,31 @@
-import { Button, ScrollView, StyleSheet, Text, View } from "react-native"
+import React, { useState } from "react"
+import { StyleSheet, Text, View } from "react-native"
 
-import React from "react"
+import ImageSelector from '../components/ImageSelector'
 import colors from "../constants/colors"
 import fonts from "../constants/fonts"
 
 const Home = ({ navigation }) => {
 
+    const [image, setImage] = useState()
+    const [alias, setAlias] = useState()
+
+    const handlePickImage = (image) => {
+        setImage(image)
+    }
+
+    const handleSave = () => {
+        dispatch(updateInfo(image, alias))
+    }
+
     return(
         <View style={{flex: 1}}> 
             <View style={styles.header}>
-                <Text style={styles.title}>HOME</Text>
+                <Text style={styles.title}>Mi Perfil</Text>
             </View> 
+            <View>
+                <ImageSelector onImage={handlePickImage}/>
+            </View>
         </View>
     )
 

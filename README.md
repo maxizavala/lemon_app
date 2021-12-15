@@ -20,3 +20,5 @@ npm install @react-navigation/bottom-tabs
 npm install redux react-redux
 
 npm i redux-thunk
+
+expo install expo-image-picker expo-file-system

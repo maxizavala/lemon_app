@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
 import CardComponent from "../components/CardComponent"
 import React from "react"
 import colors from "../constants/colors"
 import fonts from "../constants/fonts"
 
-const Home = () => {
+const Home = ({navigation}) => {
 
     return(
         <View style={{flex: 1}}> 
@@ -13,18 +13,18 @@ const Home = () => {
                 <Text style={styles.title}>HOME</Text>
             </View> 
             <View style={styles.container}>
-                <View style={styles.card}>
+                <TouchableOpacity style={styles.card}>
                     <CardComponent title="Perfil"/>
-                </View>
-                <View style={styles.card}>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.card}>
                     <CardComponent title="Depositos"/>
-                </View>
-                <View style={styles.card}>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Retiros')}>
                     <CardComponent title="Retiros"/>
-                </View>
-                <View style={styles.card}>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Agenda')}>
                     <CardComponent title="Agenda"/>
-                </View>
+                </TouchableOpacity>
             </View>
         </View>
     )

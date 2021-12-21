@@ -1,19 +1,77 @@
-import { StyleSheet, Text, View } from "react-native"
+import React, { useState } from "react"
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 
-import React from "react"
 import colors from "../constants/colors"
 import fonts from "../constants/fonts"
 
 const Retiros = () => {
+
+    const [direccion, setDireccion] = useState('')
+    const [nombre, setNombre] = useState('')
+
     return(
-        <View style={{flex: 1}}>
+        <View style={{flex: 1, marginTop: '50%'}}>
             
+            <View style={{alignItems: 'center'}}>
+                <Text style={styles.text}>Ingresa un CVU, un Alias o una dirección bitcoin</Text>
+            </View>
+
+            <View style={{alignItems: 'center'}}>
+                <TextInput 
+                    style={styles.input}
+                    value={direccion}
+                    onChangeText={setDireccion}
+                />
+            </View>
+
+            <View style={{alignItems: 'center'}}>
+                <Text style={styles.text}>Ingresa un nombre para agendarlo</Text>
+            </View>
+
+            <View style={{alignItems: 'center'}}>
+                <TextInput 
+                    style={styles.input}
+                    value={nombre}
+                    onChangeText={setNombre}
+                />
+            </View>
+
+            <View style={{alignItems: 'center'}}>
+                <TouchableOpacity style={styles.boton}>
+                    <Text style={styles.textButton}>ENVIAR</Text>
+                </TouchableOpacity>
+            </View>
+
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    
+    text: {
+        marginTop: 10,
+        marginHorizontal: 20,
+    },
+    input: {
+        marginTop: 10,
+        borderWidth: 1,
+        height: 30,
+        width: 250,
+        borderRadius: 10,
+        textAlign: 'center',
+    },
+    boton: {
+        marginTop: 20,
+        height: 30,
+        width: 100,
+        backgroundColor: colors.secundary,
+        borderRadius: 10,
+    },
+    textButton: {
+        color: colors.primary, 
+        fontFamily: fonts.title, 
+        fontSize: 25, 
+        textAlign: 'center'
+    },
 })
 
 export default Retiros

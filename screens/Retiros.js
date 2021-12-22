@@ -1,13 +1,21 @@
 import React, { useState } from "react"
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 
+import { addAddress } from '../store/actions/address.actions';
 import colors from "../constants/colors"
 import fonts from "../constants/fonts"
+import { useDispatch } from "react-redux";
 
 const Retiros = () => {
 
     const [direccion, setDireccion] = useState('')
     const [nombre, setNombre] = useState('')
+
+    const dispatch = useDispatch()
+
+    const handleSave = () => {
+        dispatch(addAddress(nombre, direccion))
+    }
 
     return(
         <View style={{flex: 1, marginTop: '50%'}}>
@@ -37,7 +45,7 @@ const Retiros = () => {
             </View>
 
             <View style={{alignItems: 'center'}}>
-                <TouchableOpacity style={styles.boton}>
+                <TouchableOpacity style={styles.boton} onPress={handleSave}>
                     <Text style={styles.textButton}>ENVIAR</Text>
                 </TouchableOpacity>
             </View>

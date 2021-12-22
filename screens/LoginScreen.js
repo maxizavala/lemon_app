@@ -30,7 +30,7 @@ const LoginScreen = () => {
 
     return (
         <KeyboardAvoidingView style={styles.screen}>
-            <Text style={styles.brand}>Lemon App</Text>
+            <Text style={styles.brand}>Crypto App</Text>
             <View style={styles.container}>
                 <Text style={styles.label}>Email</Text>
                 <TextInput

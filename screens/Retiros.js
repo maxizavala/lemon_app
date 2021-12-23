@@ -1,5 +1,5 @@
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import React, { useState } from "react"
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 
 import { addAddress } from '../store/actions/address.actions';
 import colors from "../constants/colors"
@@ -15,6 +15,13 @@ const Retiros = () => {
 
     const handleSave = () => {
         dispatch(addAddress(nombre, direccion))
+        setDireccion('')
+        setNombre('')
+        Alert.alert(
+            'Perfecto!',
+            'Tu retiro fue procesado con exito y se ejecutara en breve.',
+            [{text: 'Aceptar'}]
+        )
     }
 
     return(

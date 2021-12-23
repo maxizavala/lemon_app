@@ -1,5 +1,6 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 
+import addressReducer from './reducers/address.reducer';
 import arsReducer from './reducers/ars.reducer';
 import authReducer from './reducers/auth.reducer';
 import btcReducer from './reducers/btc.reducer';
@@ -13,6 +14,7 @@ const RootReducer = combineReducers({
     historial: historialReducer,
     ordenes: ordersReducer,
     auth: authReducer,
+    address: addressReducer,
 });
 
 export default createStore(RootReducer, applyMiddleware(thunk));

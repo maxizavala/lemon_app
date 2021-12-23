@@ -1,4 +1,4 @@
-import { insertAddress } from "../../db";
+import { fetchAddres, insertAddress } from "../../db";
 
 export const ADD_ADDRESS = 'ADD_ADDRESS'
 export const LOAD_ADDRESS = 'LOAD_ADDRESS';
@@ -9,13 +9,26 @@ export const addAddress = (name, address) => {
 
         const result = await insertAddress(name, address)
 
-        console.log(result)
-
         dispatch({ 
             type: ADD_ADDRESS,
             payload: {id: result.insertId, name, address}
         })
     }
+
+}
+
+
+export const loadAddress = () => {
     
+    return async dispatch => {
+
+        try {
+            const result = await fetchAddres()
+            dispatch({ type: LOAD_ADDRESS, address: result.rows._array })
+        } catch (error) {
+            throw error
+        }
+
+    }
 
 }

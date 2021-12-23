@@ -16,13 +16,13 @@ const addressReducer = (state = initialState, action) => {
             );
             return {
                 ...state,
-                address: state.adresses.concat(newAddress),
+                address: state.addresses.concat(newAddress),
             };
         case LOAD_ADDRESS:
             return {
                 ...state,
-                places: action.addresses.map(item => new Address(
-                    item.id,
+                addresses: action.address.map(item => new Address(
+                    item.id.toString(),
                     item.name,
                     item.address,
                 ))

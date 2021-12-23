@@ -47,7 +47,8 @@ const styles = StyleSheet.create({
     },
     container: {
         alignItems: 'center',
-        marginTop: 10,
+        marginVertical: '25%',
+        justifyContent: 'center',
     },
     card: {
         margin: 10,

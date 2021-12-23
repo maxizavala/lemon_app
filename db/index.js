@@ -30,3 +30,17 @@ export const insertAddress = (name, address) => {
         })
     })
 }
+
+
+export const fetchAddres = () => {
+    return new Promise((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                `SELECT * FROM addresses`,
+                [],
+                (_, result) => resolve(result),
+                (_, err) => reject(err),
+            )
+        })
+    })
+}

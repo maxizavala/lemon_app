@@ -22,3 +22,5 @@ npm install redux react-redux
 npm i redux-thunk
 
 npm i expo-sqlite
+
+expo install expo-image-picker

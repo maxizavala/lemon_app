@@ -1,5 +1,6 @@
 import Agenda from "../screens/Agenda"
 import Home from "../screens/Home"
+import Perfil from "../screens/Perfil"
 import React from "react"
 import Retiros from "../screens/Retiros"
 import colors from "../constants/colors"
@@ -16,6 +17,20 @@ const HomeNavigator = () => {
             }}
         >
 			<Stack.Screen name="Home" component={Home} />
+
+            <Stack.Screen 
+                name="Perfil" 
+                component={Perfil} 
+                options={{
+                    title: 'Perfil',
+                    headerStyle: {
+                        backgroundColor: colors.secundary,
+                    },
+                    headerTintColor: colors.primary,
+                    headerShown: true,
+                    animation: 'default'
+                }}
+            />
 
             <Stack.Screen 
                 name="Retiros" 

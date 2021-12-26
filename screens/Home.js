@@ -13,7 +13,7 @@ const Home = ({navigation}) => {
                 <Text style={styles.title}>HOME</Text>
             </View> 
             <View style={styles.container}>
-                <TouchableOpacity style={styles.card}>
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Perfil')}>
                     <CardComponent title="Perfil"/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.card}>

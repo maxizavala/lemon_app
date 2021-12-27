@@ -24,3 +24,5 @@ npm i redux-thunk
 npm i expo-sqlite
 
 expo install expo-image-picker
+
+expo install @react-native-async-storage/async-storage

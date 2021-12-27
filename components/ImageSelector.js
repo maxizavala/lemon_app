@@ -3,17 +3,30 @@ import * as ImagePicker from 'expo-image-picker'
 import { Alert, Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import React, { useState } from "react"
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Feather } from '@expo/vector-icons';
 import colors from '../constants/colors'
 
 const ImageSelector = props => {
-    
-    const [pickedUri, setPickedUri] = useState()
+    const [pickedUri, setPickedUri] = useState(null)
 
+    
+    const getAvatar = async () => {
+        try {
+            const avatar = await AsyncStorage.getItem('@avatar')
+            if(avatar !== null) {
+                setPickedUri(avatar)
+            }
+        } catch(e) {
+            console.log(e)
+        }
+    }
+    getAvatar()
+
+    
     const verifyPermissions = async () => {
         const status = ImagePicker.requestMediaLibraryPermissionsAsync()
 
-        
         if (status.granted === false) {
             Alert.alert(
                 'Permisos insuficientes',
@@ -25,7 +38,16 @@ const ImageSelector = props => {
 
             return true
     }
-        
+
+    
+    const storeAvatar = async (value) => {
+        try {
+            await AsyncStorage.setItem('@avatar', value)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
 
     const handleTakeImage = async () => {
         const isCameraOk = await verifyPermissions()
@@ -39,6 +61,7 @@ const ImageSelector = props => {
         })
 
         setPickedUri(image.uri)
+        storeAvatar(image.uri)
     }
 
     return (

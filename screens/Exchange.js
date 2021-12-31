@@ -71,7 +71,7 @@ const Exchange = ({ navigation }) => {
                 sell={sell}
             />
 
-            <Lista lista={orders}/> 
+            {/*<Lista lista={orders}/>*/}
 
             <View style={styles.footer}>
 

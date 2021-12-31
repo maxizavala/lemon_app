@@ -25,7 +25,6 @@ const ModalComponent = ({modalVisible, handleConfirm, handleCancel, text}) => {
         } else {
             setEnteredValue(enteredValue)
         }
-        
     }
 
     const calcularBtc = (monto) => {
@@ -38,6 +37,7 @@ const ModalComponent = ({modalVisible, handleConfirm, handleCancel, text}) => {
             handleConfirm()
             if (text === 'Comprar btc') {
                 dispatch(updateArs(enteredValue))
+                
             }
         }
         setEnteredValue('')

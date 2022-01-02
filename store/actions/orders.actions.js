@@ -2,6 +2,8 @@ import { URL_API } from "../../constants/database"
 
 export const ADD_ORDER = "ADD_ORDER"
 
+export const GET_ORDERS = 'GET_ORDERS'
+
 export const addOrder = (order) => {
     return async dispatch => {
         try {
@@ -30,6 +32,30 @@ export const addOrder = (order) => {
             });
         } catch(error) {
             console.log(error.message);
+        }
+    }
+}
+
+export const getOrders = () => {
+    return async dispatch => {
+        try {
+            const response = await fetch(`${URL_API}/ordenes.json`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+
+            const result = await response.json()
+            const orders = Object.keys(result).map(key => ({
+                ...result[key],
+                id: key,
+            }))
+            dispatch({
+                type: GET_ORDERS,
+                payload: orders,
+            })
+        } catch (error) {
+            console.log(error.message)
         }
     }
 }

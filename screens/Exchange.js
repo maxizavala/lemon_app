@@ -1,27 +1,34 @@
-import React, { useState } from "react";
-import { StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { addOrder, getOrders } from "../store/actions/orders.actions";
+import { useDispatch, useSelector } from 'react-redux'
 
 import Header from '../components/Header'
 import Lista from '../components/Lista'
 import Modal from '../components/Modal'
-import { addOrder } from "../store/actions/orders.actions";
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux';
 
-const Exchange = ({ navigation }) => {
+const Exchange = () => {
+
+    const dispatch = useDispatch();
+    const orders = useSelector(state => state.ordenes.list);
+
+    
+    useEffect(() => {
+        dispatch(getOrders())
+    }, []);
+
+    console.log(orders)
 
     const [modalVisible, setModalVisible] = useState(false);
     const [text, setText] = useState('');
     const [operacion, setOperacion] = useState('');
 
-    const dispatch = useDispatch();
-    const orders = useSelector(state => state.ordenes.list);
 
     const obtenerFecha = () => {
         const f = new Date()
 
         let day = f.getDate()
-        let month = f.getMonth()
+        let month = f.getMonth() + 1
         let year = f.getFullYear()
         let date = day + "/" + month + "/" + year
 
@@ -31,7 +38,6 @@ const Exchange = ({ navigation }) => {
         let time = hour + ":" + minutes + ":" + seconds
 
         return date + " " + time
-
     }
 
 
@@ -41,29 +47,32 @@ const Exchange = ({ navigation }) => {
         setOperacion('Compra de btc')
     }
 
+    
     const sell = () => {
         setText('Vender btc')
         setModalVisible(true);
         setOperacion('Venta de btc')
     }
 
+
     const addItem = (op) => {
         dispatch(addOrder({
-            id: Math.random().toString(),
             value: obtenerFecha() + " - " + op
         })) 
-
     }
+
 
     const handleConfirm = () => {
         setModalVisible(false)
         addItem(operacion)
     }
 
+
     const handleCancel = () => {
         setModalVisible(false);
     }
-    
+
+
     return (
         <View style={styles.container}>
             <Header
@@ -72,6 +81,13 @@ const Exchange = ({ navigation }) => {
             />
 
             {/*<Lista lista={orders}/>*/}
+            <FlatList
+                data={orders}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                    <Text>{item.order.value}</Text>
+                )}
+            />
 
             <View style={styles.footer}>
 

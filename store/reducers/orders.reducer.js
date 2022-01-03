@@ -10,7 +10,8 @@ const ordersReducer = (state = initialState, action) => {
         case ADD_ORDER:
             return {
                 ...state,
-                list: [...state.list, action.payload]
+                //list: [...state.list, action.payload]
+                list: state.list
             }
         case GET_ORDERS:
             return {

@@ -17,8 +17,6 @@ const Exchange = () => {
         dispatch(getOrders())
     }, []);
 
-    console.log(orders)
-
     const [modalVisible, setModalVisible] = useState(false);
     const [text, setText] = useState('');
     const [operacion, setOperacion] = useState('');
@@ -44,21 +42,32 @@ const Exchange = () => {
     const buy = () => {
         setText('Comprar btc')
         setModalVisible(true);
-        setOperacion('Compra de btc')
+        setOperacion('compra')
     }
 
     
     const sell = () => {
         setText('Vender btc')
         setModalVisible(true);
-        setOperacion('Venta de btc')
+        setOperacion('venta')
     }
 
+    function newPromise() {
+        return new Promise((resolve, reject) => {  
+            setTimeout(
+                function(){                          
+                    dispatch(getOrders())  
+            }, 2500);      
+        });     
+    }
 
     const addItem = (op) => {
         dispatch(addOrder({
-            value: obtenerFecha() + " - " + op
-        })) 
+            fecha: obtenerFecha(),
+            orden: op,
+        }))
+
+        newPromise()
     }
 
 
@@ -85,7 +94,7 @@ const Exchange = () => {
                 data={orders}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
-                    <Text>{item.order.value}</Text>
+                    <Text>{item.order.fecha} - {item.order.orden} </Text>
                 )}
             />
 

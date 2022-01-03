@@ -2,29 +2,16 @@ import { FlatList, StyleSheet, Text, View } from "react-native"
 
 import React from "react"
 
-// ------------------------
-const historial = [
-    {
-        id: '1',
-        value: 'sarasa1'
-    },
-    {
-        id: '2',
-        value: 'sarasa2'
-    },
-];
-// ----------------------------
-
 const Lista = (props) => {
 
     return (
         <FlatList
             data={props}
-            renderItem={data => {
+            renderItem={item => {
                 return (
                     <View style={styles.itemList}>
                         <View style={styles.item}>
-                            <Text>{data.item.value}</Text>
+                            <Text>{item.order.value}</Text>
                         </View>
                     </View>
                 );

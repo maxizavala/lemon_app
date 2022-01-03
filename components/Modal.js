@@ -37,7 +37,6 @@ const ModalComponent = ({modalVisible, handleConfirm, handleCancel, text}) => {
             handleConfirm()
             if (text === 'Comprar btc') {
                 dispatch(updateArs(enteredValue))
-                
             }
         }
         setEnteredValue('')

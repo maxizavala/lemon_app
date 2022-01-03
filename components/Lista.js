@@ -6,17 +6,17 @@ const Lista = (props) => {
 
     return (
         <FlatList
-            data={props}
-            renderItem={item => {
+            data={props.lista}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => {
                 return (
                     <View style={styles.itemList}>
                         <View style={styles.item}>
-                            <Text>{item.order.value}</Text>
+                            <Text>{item.order.fecha} - {item.order.orden} </Text>
                         </View>
                     </View>
-                );
+                )
             }}
-            keyExtractor={item => item.id}
         />
     )
 }

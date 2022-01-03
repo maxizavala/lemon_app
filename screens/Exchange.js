@@ -42,32 +42,27 @@ const Exchange = () => {
     const buy = () => {
         setText('Comprar btc')
         setModalVisible(true);
-        setOperacion('compra')
+        setOperacion('COMPRA')
     }
 
     
     const sell = () => {
         setText('Vender btc')
         setModalVisible(true);
-        setOperacion('venta')
+        setOperacion('VENTA')
     }
 
-    function newPromise() {
-        return new Promise((resolve, reject) => {  
-            setTimeout(
-                function(){                          
-                    dispatch(getOrders())  
-            }, 2500);      
-        });     
-    }
-
+    
     const addItem = (op) => {
         dispatch(addOrder({
             fecha: obtenerFecha(),
             orden: op,
         }))
 
-        newPromise()
+        setTimeout(
+            function(){                          
+                dispatch(getOrders())  
+        }, 2500);
     }
 
 
@@ -89,14 +84,7 @@ const Exchange = () => {
                 sell={sell}
             />
 
-            {/*<Lista lista={orders}/>*/}
-            <FlatList
-                data={orders}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                    <Text>{item.order.fecha} - {item.order.orden} </Text>
-                )}
-            />
+            <Lista lista={orders}/>
 
             <View style={styles.footer}>
 

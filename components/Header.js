@@ -8,12 +8,14 @@ import { useSelector } from 'react-redux';
 const Header = ({buy, sell}) => {
 
     const arsSaldo = useSelector(state => state.arsSaldo.saldo);
+    const btcMount = useSelector(state => state.btcPrice.saldo)
 
     return (
         <View style={styles.header}>
             <View style={styles.text}>
                 <Text style={styles.textTitle}>Saldo disponible</Text>
-                <Text style={styles.textSaldo}>${arsSaldo}</Text>
+                <Text style={styles.textSaldo}>${arsSaldo.toFixed(2)}</Text>
+                <Text style={styles.textSaldo}> {btcMount.toFixed(8)} btc </Text>
             </View>
             <View style={styles.iconContainer}>
                 <Button title="COMPRAR" color={colors.primary} style={styles.iconR} onPress={buy}/>
@@ -26,7 +28,7 @@ const Header = ({buy, sell}) => {
 const styles = StyleSheet.create({
     header: {
         backgroundColor: colors.secundary, 
-        height: '17%', 
+        height: '20%', 
         width: '100%', 
     },
     text: {
@@ -42,9 +44,9 @@ const styles = StyleSheet.create({
     textSaldo: {
         marginTop: 10,
         fontFamily: fonts.text,
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: 'bold',
-        color: colors.primary,
+        color: 'white',
     },
     iconContainer: {
         flex: 1,

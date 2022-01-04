@@ -14,7 +14,6 @@ const arsReducer = (state = initialState, action) => {
         default:
             return state;
     }
-	
 }
 
 export default arsReducer;

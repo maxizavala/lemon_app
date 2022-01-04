@@ -1,5 +1,5 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from "react";
+import { StyleSheet, View } from 'react-native';
 import { addOrder, getOrders } from "../store/actions/orders.actions";
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -11,7 +11,8 @@ const Exchange = () => {
 
     const dispatch = useDispatch();
     const orders = useSelector(state => state.ordenes.list);
-
+    const monto = useSelector(state => state.monto.monto);
+    const cotizacion = useSelector(state => state.cotizacion.cotizacion);
     
     useEffect(() => {
         dispatch(getOrders())
@@ -40,14 +41,14 @@ const Exchange = () => {
 
 
     const buy = () => {
-        setText('Comprar btc')
+        setText('Orden de compra')
         setModalVisible(true);
         setOperacion('COMPRA')
     }
 
     
     const sell = () => {
-        setText('Vender btc')
+        setText('Orden de venta')
         setModalVisible(true);
         setOperacion('VENTA')
     }
@@ -57,6 +58,8 @@ const Exchange = () => {
         dispatch(addOrder({
             fecha: obtenerFecha(),
             orden: op,
+            monto: monto,
+            cotizacion: cotizacion
         }))
 
         setTimeout(
@@ -94,6 +97,7 @@ const Exchange = () => {
                 modalVisible={modalVisible}
                 handleConfirm={handleConfirm}
                 handleCancel={handleCancel}
+                operacion={operacion}
                 text={text}
             /> 
         </View>

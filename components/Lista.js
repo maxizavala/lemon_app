@@ -12,7 +12,12 @@ const Lista = (props) => {
                 return (
                     <View style={styles.itemList}>
                         <View style={styles.item}>
-                            <Text>{item.order.fecha} - {item.order.orden} </Text>
+                            <View>
+                                <Text>{item.order.fecha} - {item.order.orden} </Text>
+                            </View>
+                            <View>
+                                <Text>monto: ${item.order.monto} - cotización: ${item.order.cotizacion}</Text>
+                            </View>
                         </View>
                     </View>
                 )
@@ -31,7 +36,6 @@ const styles = StyleSheet.create({
         padding: 10,
         marginTop: 10,
         marginBottom: 10,
-        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         borderColor: 'black',

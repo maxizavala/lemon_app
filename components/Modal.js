@@ -1,53 +1,68 @@
 import { Button, Modal, StyleSheet, Text, TextInput, View } from "react-native"
 import React, { useState } from "react"
+import { useDispatch, useSelector } from 'react-redux'
 
 import colors from "../constants/colors"
 import fonts from '../constants/fonts'
 import { updateArs } from "../store/actions/ars.actions"
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
+import { updateBtc } from "../store/actions/btc.actions"
+import { updateCotizacion } from "../store/actions/cotizacion.actions"
+import { updateMonto } from "../store/actions/monto.actions"
 
-const ModalComponent = ({modalVisible, handleConfirm, handleCancel, text}) => {
+const ModalComponent = ({modalVisible, handleConfirm, handleCancel, operacion, text}) => {
 
     const btcPrice = useSelector(state => state.btcPrice.price);
+    const btcSaldo = useSelector(state => state.btcPrice.saldo);
     const arsSaldo = useSelector(state => state.arsSaldo.saldo);
 
-    const [btc, setBtc] = useState(0)
-    const [enteredValue, setEnteredValue] = useState('')
+    const [monto, setMonto] = useState('')
+    const [cotizacion, setCotizacion] = useState('')
 
     const dispatch = useDispatch();
 
-    const handleInputValue = text => {
-        setEnteredValue(text.replace(/[^0-9]/g, ''))
-        if (text <= arsSaldo) {
-            let btc = calcularBtc(text)
-            setBtc(btc)
+    
+    const handleMontoValue = text => {
+        setMonto(text)
+        if (operacion === "COMPRA") {
+            if (text > arsSaldo) {
+                setMonto(monto)
+            }
         } else {
-            setEnteredValue(enteredValue)
-        }
-    }
-
-    const calcularBtc = (monto) => {
-        const btc = btcPrice
-        return (monto/btc).toFixed(8)
-    }
-
-    const confirm = () => {
-        if (btc > 0) {
-            handleConfirm()
-            if (text === 'Comprar btc') {
-                dispatch(updateArs(enteredValue))
+            if (text > btcSaldo) {
+                setMonto(monto)
             }
         }
-        setEnteredValue('')
-        setBtc(0)
+    }
+
+
+    const handleCotizacionValue = text => {
+        setCotizacion(text)
+    }
+
+
+    const confirm = () => {
+        
+        if (operacion === 'COMPRA') {
+            dispatch(updateArs(monto))
+        }
+        if (operacion === 'VENTA') {
+            dispatch(updateBtc(monto))
+        }
+
+        dispatch(updateMonto(monto))
+        dispatch(updateCotizacion(cotizacion))
+
+        setMonto('')
+        setCotizacion('')
+
+        handleConfirm()
     }
 
 
     const cancel = () => {
         handleCancel()
-        setEnteredValue('')
-        setBtc(0)
+        setMonto('')
+        setCotizacion('')
     }
 
     return(
@@ -55,17 +70,25 @@ const ModalComponent = ({modalVisible, handleConfirm, handleCancel, text}) => {
             <View style={styles.modalContainer}>
                 <View style={[styles.modalContent, styles.shadow]}>
                     <Text style={styles.title}> {text} </Text>
-                    <Text style={styles.modalCotizacion}> 1 btc = ${btcPrice} </Text>
+                    <Text style={styles.modalCotizacion}> cotización actual ${btcPrice} </Text>
                     <View style={styles.buttonContainer}>
-                        <Text style={styles.title} > $ </Text>
+                        <Text style={styles.title} > monto $ </Text>
                         <TextInput 
                             style={styles.input}
                             keyboardType="numeric"
-                            value={enteredValue}
-                            onChangeText={handleInputValue}
+                            value={monto}
+                            onChangeText={handleMontoValue}
                         />
                     </View>
-                    <Text style={styles.modalMessage}> {btc} btc </Text>
+                    <View style={styles.buttonContainer}>
+                        <Text style={styles.title} > cotización $ </Text>
+                        <TextInput 
+                            style={styles.input}
+                            keyboardType="numeric"
+                            value={cotizacion}
+                            onChangeText={handleCotizacionValue}
+                        />
+                    </View>
                     <View style={styles.buttonContainer}>
                         <Button
                             onPress={confirm}
@@ -108,7 +131,7 @@ const styles = StyleSheet.create({
         color: 'white'
       },
       modalCotizacion: {
-        fontSize: 25,
+        fontSize: 18,
         marginTop: 10,
         marginBottom: 20,
         color: 'white'

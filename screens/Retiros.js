@@ -10,13 +10,18 @@ const Retiros = () => {
 
     const [direccion, setDireccion] = useState('')
     const [nombre, setNombre] = useState('')
+    const [monto, setMonto] = useState('')
 
     const dispatch = useDispatch()
 
     const handleSave = () => {
-        dispatch(addAddress(nombre, direccion))
+        if (nombre !== '') {
+            dispatch(addAddress(nombre, direccion))
+        }
+        console.log(nombre)
         setDireccion('')
         setNombre('')
+        setMonto('')
         Alert.alert(
             'Perfecto!',
             'Tu retiro fue procesado con exito y se ejecutara en breve.',
@@ -36,6 +41,19 @@ const Retiros = () => {
                     style={styles.input}
                     value={direccion}
                     onChangeText={setDireccion}
+                />
+            </View>
+
+            <View style={{alignItems: 'center'}}>
+                <Text style={styles.text}>Ingresa el monto</Text>
+            </View>
+
+            <View style={{alignItems: 'center'}}>
+                <TextInput 
+                    style={styles.input}
+                    value={monto}
+                    onChangeText={setMonto}
+                    keyboardType="numeric"
                 />
             </View>
 

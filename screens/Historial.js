@@ -27,11 +27,17 @@ const Historial = ({ navigation }) => {
             <FlatList 
                 data={historial}
                 keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                    <TouchableOpacity onPress={() => handleSelectOperation(item)}>
-                        <Text>{item.fecha} - {item.operacion} - {item.debito_monto}</Text>
-                    </TouchableOpacity>
-                )}
+                renderItem={({ item }) => {
+                    return (
+                        <View style={styles.itemList}>
+                            <View style={styles.item}>
+                                <TouchableOpacity onPress={() => handleSelectOperation(item)}>
+                                    <Text>{item.fecha} - {item.operacion} - {item.debito_monto}</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    )
+                }}
             /> 
             
         </View>
@@ -52,6 +58,23 @@ const styles = StyleSheet.create({
         color: colors.primary,
         fontSize: 20,
         marginTop: 30,
+    },
+    itemList: {
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    item: {
+        width: '90%',
+        padding: 10,
+        marginTop: 10,
+        marginBottom: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        borderColor: 'black',
+        borderWidth: 1,
+        borderRadius: 5,
+        backgroundColor: 'white',
     },
 })
 

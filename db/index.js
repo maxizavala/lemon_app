@@ -44,3 +44,17 @@ export const fetchAddres = () => {
         })
     })
 }
+
+
+export const deleteAddress = (id) => {
+    return new Promise((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                `DELETE FROM addresses WHERE id = ?`,
+                [id],
+                (_, result) => resolve(result),
+                (_, err) => reject(err),
+            )
+        })
+    })
+}

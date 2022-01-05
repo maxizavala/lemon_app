@@ -1,4 +1,5 @@
 import Agenda from "../screens/Agenda"
+import Depositos from "../screens/Depositos"
 import Home from "../screens/Home"
 import Perfil from "../screens/Perfil"
 import React from "react"
@@ -31,6 +32,20 @@ const HomeNavigator = () => {
                     animation: 'default'
                 }}
             />
+
+            <Stack.Screen 
+                name="Depositos" 
+                component={Depositos} 
+                options={{
+                    title: 'Depositos',
+                    headerStyle: {
+                        backgroundColor: colors.secundary,
+                    },
+                    headerTintColor: colors.primary,
+                    headerShown: true,
+                    animation: 'default'
+                }}
+            />  
 
             <Stack.Screen 
                 name="Retiros" 

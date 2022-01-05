@@ -16,7 +16,7 @@ const Home = ({navigation}) => {
                 <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Perfil')}>
                     <CardComponent title="Perfil"/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.card}>
+                <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Depositos')}>
                     <CardComponent title="Depositos"/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Retiros')}>

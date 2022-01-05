@@ -2,6 +2,7 @@ import { Button, Modal, StyleSheet, Text, TextInput, View } from "react-native"
 import React, { useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 
+import { addOrder } from "../store/actions/orders.actions";
 import colors from "../constants/colors"
 import fonts from '../constants/fonts'
 import { updateArs } from "../store/actions/ars.actions"
@@ -9,7 +10,7 @@ import { updateBtc } from "../store/actions/btc.actions"
 import { updateCotizacion } from "../store/actions/cotizacion.actions"
 import { updateMonto } from "../store/actions/monto.actions"
 
-const ModalComponent = ({modalVisible, handleConfirm, handleCancel, operacion, text}) => {
+const ModalComponent = ({modalVisible, handleConfirm, handleCancel, operacion, text, fecha}) => {
 
     const btcPrice = useSelector(state => state.btcPrice.price);
     const btcSaldo = useSelector(state => state.btcPrice.saldo);
@@ -40,6 +41,16 @@ const ModalComponent = ({modalVisible, handleConfirm, handleCancel, operacion, t
     }
 
 
+    const addItem = (op) => {
+        dispatch(addOrder({
+            fecha: fecha,
+            orden: op,
+            monto: monto,
+            cotizacion: cotizacion
+        }))
+    }
+
+
     const confirm = () => {
         
         if (operacion === 'COMPRA') {
@@ -55,6 +66,7 @@ const ModalComponent = ({modalVisible, handleConfirm, handleCancel, operacion, t
         setMonto('')
         setCotizacion('')
 
+        addItem(operacion)
         handleConfirm()
     }
 

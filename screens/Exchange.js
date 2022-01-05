@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from 'react-native';
-import { addOrder, getOrders } from "../store/actions/orders.actions";
 import { useDispatch, useSelector } from 'react-redux'
 
 import Header from '../components/Header'
 import Lista from '../components/Lista'
 import Modal from '../components/Modal'
+import { getOrders } from "../store/actions/orders.actions";
 
 const Exchange = () => {
 
@@ -52,26 +52,15 @@ const Exchange = () => {
         setModalVisible(true);
         setOperacion('VENTA')
     }
-
     
-    const addItem = (op) => {
-        dispatch(addOrder({
-            fecha: obtenerFecha(),
-            orden: op,
-            monto: monto,
-            cotizacion: cotizacion
-        }))
+
+    const handleConfirm = () => {
+        setModalVisible(false)
 
         setTimeout(
             function(){                          
                 dispatch(getOrders())  
         }, 2500);
-    }
-
-
-    const handleConfirm = () => {
-        setModalVisible(false)
-        addItem(operacion)
     }
 
 
@@ -99,6 +88,7 @@ const Exchange = () => {
                 handleCancel={handleCancel}
                 operacion={operacion}
                 text={text}
+                fecha={obtenerFecha()}
             /> 
         </View>
     );

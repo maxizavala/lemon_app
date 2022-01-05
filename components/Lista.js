@@ -1,8 +1,14 @@
-import { FlatList, StyleSheet, Text, View } from "react-native"
+import { Button, FlatList, StyleSheet, Text, View } from "react-native"
 
 import React from "react"
+import { deleteOrder } from "../store/actions/orders.actions"
+import { useDispatch } from "react-redux"
 
 const Lista = (props) => {
+
+    const dispatch = useDispatch()
+    const eliminar = (id) => dispatch(deleteOrder(id))
+    
 
     return (
         <FlatList
@@ -17,6 +23,12 @@ const Lista = (props) => {
                             </View>
                             <View>
                                 <Text>monto: ${item.order.monto} - cotización: ${item.order.cotizacion}</Text>
+                            </View>
+                            <View>
+                            <Button
+                                onPress={() => eliminar(item.id)}
+                                title="Eliminar"
+                            />
                             </View>
                         </View>
                     </View>

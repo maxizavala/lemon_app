@@ -2,7 +2,7 @@
   "expo": {
     "name": "Crypto App",
     "slug": "Crypto-App",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -19,15 +19,20 @@
     "ios": {
         "bundleIdentifier": "com.bleuapp.cryptoapp",
         "buildNumber": "1.0.0",
-      "supportsTablet": true
+        "supportsTablet": true
     },
     "android": {
         "package": "com.bleuapp.cryptoapp",
-        "versionCode": 1,
+        "versionCode": 1.1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "permissions": [
+        "CAMERA",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

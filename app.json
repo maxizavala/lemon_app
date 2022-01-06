@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "lemon_app",
-    "slug": "lemon_app",
+    "name": "Crypto App",
+    "slug": "Crypto-App",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#021e34"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,9 +17,13 @@
       "**/*"
     ],
     "ios": {
+        "bundleIdentifier": "com.bleuapp.cryptoapp",
+        "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
+        "package": "com.bleuapp.cryptoapp",
+        "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

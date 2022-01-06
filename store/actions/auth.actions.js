@@ -32,25 +32,30 @@ export const signUp = (email, password) => {
 
 export const signIn = (email, password) => {
     return async dispatch => {
-        const response = await fetch(SIGN_IN_URL, {
-            method: 'POST',
-            header: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-            email,
-            password,
-            returnSecureToken: true,
-            }),
-        });
-
-        const data = await response.json();
-
-        dispatch({
-            type: SIGN_IN,
-            token: data.idToken,
-            userId: data.localId,
-        });
+        try {
+            const response = await fetch(SIGN_IN_URL, {
+                method: 'POST',
+                header: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                email,
+                password,
+                returnSecureToken: true,
+                }),
+            });
+    
+            const data = await response.json();
+    
+            dispatch({
+                type: SIGN_IN,
+                token: data.idToken,
+                userId: data.localId,
+            });
+        } catch (error) {
+            
+        }
+        
         
     }
 }
